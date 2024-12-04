@@ -5,6 +5,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
+    site: 'https://ayuda.monomo.com.co',
     integrations: [starlight({
         title: 'My Docs',
         defaultLocale: 'root',

@@ -38,6 +38,6 @@ export default defineConfig({
         ],
 		}), tailwind({
             // Disable the default base styles:
-            applyBaseStyles: false,
+            applyBaseStyles: true,
           })],
 });

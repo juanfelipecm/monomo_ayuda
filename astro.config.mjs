@@ -7,6 +7,7 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
     integrations: [starlight({
         title: 'My Docs',
+        defaultLocale: 'root',
         logo: {
             src: './src/assets/Logo_Monomo_negro.png',
         },

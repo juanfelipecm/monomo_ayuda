@@ -34,6 +34,10 @@ export default defineConfig({
             {
                 label: 'Modelos',
                 autogenerate: {directory: 'modelos'}
+            },
+            {
+                label: 'Marcas',
+                autogenerate: {directory: 'marcas'}
             }
         ],
 		}), tailwind({

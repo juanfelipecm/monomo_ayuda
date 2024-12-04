@@ -8,7 +8,19 @@ Writing a good guide requires thinking about what your users are trying to do.
 
 Para crear tu cuenta.
 
-![IMG_7191 (1)](https://github.com/user-attachments/assets/1aad5a72-34bb-4700-86f2-ad1f70110dfa)
+# UGC: Todo lo que necesito saber
+
+> El contenido UGC o “user-generated content” es aquel creado por los usuarios de una marca de forma espontánea.
+> 
+
+## **Introducción al UGC**
+
+- **¿Qué es UGC?**
+
+El contenido UGC o “user-generated content” es aquel creado por los usuarios de una marca de forma espontánea. Puede tratarse de historias, comentarios y hasta opiniones hechas por personales reales, lo cual le da un verdadero valor.
+
+Este tipo de contenido transmite credibilidad, confianza y transparencia a otros potenciales clientes. También fomenta el aumento de tu comunidad, te permitirá conocer mejor al público, favorece la decisión de compra y fideliza los clientes que ya tienes. Es una excelente herramienta para crear marketing y que no parezca marketing.
+
 
 https://youtu.be/jpK2fUHVJd4?si=n4yFPe3HBn226vEM
 

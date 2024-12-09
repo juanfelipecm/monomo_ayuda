@@ -5,32 +5,44 @@ template: splash
 hero:
   tagline: Explora nuestros tutoriales para solucionar cualquier duda con la plataforma.
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/monomo-ayuda-icono-like.png
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Para marcas
+      link: /marcas/marcas-intro/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: Para modelos
+      link: /modelos/modelos-intro/
+      icon: right-arrow
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 
 ## Links rápidos
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+	<LinkCard 
+		title="Marcas: Primeros pasos" 
+		href ='/marcas/primeros-pasos/que-es-y-como-funciona-monomo/'
+		description = '¿Qué es y cómo funciona monomo?'
+		>
+	</LinkCard>
+	<LinkCard 
+		title="Modelos: Crea tu perfil" 
+		href ='/modelos/primeros-pasos/crea-y-publica-tu-perfil/'
+		description = 'Aprende como publicar tu perfil ganador en menos de cinco minutos'
+		>
+	</LinkCard>
+	<LinkCard 
+		title="Marcas: Encuentra inspiración" 
+		href ='/marcas/tipos-de-proyectos/encuentra-inspitacion/'
+		description = 'Descubre tendencias, talento y pide ideas para tu marca'
+		>
+	</LinkCard>	
+	<LinkCard 
+		title="Modelos: ¿Cómo funciona el contrato?" 
+		href ='/marcas/contratos-y-pagos/como-funciona-un-contrato/'
+		description = '¿Qué es y cómo funciona monomo?'
+		>
+	</LinkCard>
 </CardGrid>

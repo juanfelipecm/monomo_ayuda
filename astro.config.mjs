@@ -66,7 +66,7 @@ export default defineConfig({
                     },                                                                                                                        
                     {
                         label: 'Encuentra y contrata',
-                        autogenerate: {directory: 'marcas/enuentra-y-contrata'},
+                        autogenerate: {directory: 'marcas/encuentra-y-contrata'},
                     },
                     {
                         label: 'Mejores prácticas',

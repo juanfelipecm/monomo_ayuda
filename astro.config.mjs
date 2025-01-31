@@ -63,7 +63,7 @@ export default defineConfig({
                     {
                         label: 'Tipos de proyectos',
                         autogenerate: {directory: 'marcas/tipos-de-proyectos'},
-                    },                                                                                                                        
+                    },                                           
                     {
                         label: 'Encuentra y contrata',
                         autogenerate: {directory: 'marcas/encuentra-y-contrata'},
@@ -71,6 +71,14 @@ export default defineConfig({
                     {
                         label: 'Mejores prácticas',
                         autogenerate: {directory: 'marcas/mejores-practicas'},
+                    },
+                    {
+                        label: 'Activaciones',
+                        autogenerate: {directory: 'marcas/activaciones'},
+                    },
+                    {
+                        label: 'Programa Viralidad',
+                        autogenerate: {directory: 'marcas/programa-viralidad'},
                     },
                 ]
             }            

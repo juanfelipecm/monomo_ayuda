@@ -17,6 +17,71 @@ Comencemos por el principio… Monomo te permite encontrar creadores, ofreciendo
 A diferencia de otras plataformas, Monomo no es solo un lugar para buscar talento.
 Es un ecosistema completo que te permite:
 
+<style>
+  .monomo-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideUp 0.6s ease forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 6px solid #fe5b4c;
+  }
+
+  .monomo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-left-color: #37feb5;
+  }
+
+  .monomo-card:nth-child(1) { animation-delay: 0.1s; }
+  .monomo-card:nth-child(2) { animation-delay: 0.2s; }
+  .monomo-card:nth-child(3) { animation-delay: 0.3s; }
+  .monomo-card:nth-child(4) { animation-delay: 0.4s; }
+  .monomo-card:nth-child(5) { animation-delay: 0.5s; }
+  .monomo-card:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeSlideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<div style={{ display: 'grid', gap: '16px', gridTemplateColumns: '1fr 1fr', marginTop: '24px' }}>
+
+  <div className="monomo-card" style={{ borderRadius: '12px', padding: '16px', backgroundColor: '#fdfdfd' }}>
+    🔍 <strong>Crear convocatorias</strong><br/>
+    Publicá campañas abiertas para que los creadores se postulen con su perfil.
+  </div>
+
+  <div className="monomo-card" style={{ borderRadius: '12px', padding: '16px', backgroundColor: '#fdfdfd' }}>
+    🤙 <strong>Enviar ofertas personalizadas</strong><br/>
+    Contactá directamente a los talentos que más te gusten, sin intermediarios.
+  </div>
+
+  <div className="monomo-card" style={{ borderRadius: '12px', padding: '16px', backgroundColor: '#fdfdfd' }}>
+    🤝 <strong>Contratar creadores de forma segura</strong><br/>
+    Gestioná pagos, contratos y entregas todo desde un mismo lugar.
+  </div>
+
+  <div className="monomo-card" style={{ borderRadius: '12px', padding: '16px', backgroundColor: '#fdfdfd' }}>
+    📊 <strong>Gestionar tus campañas</strong><br/>
+    Monitoreá las participaciones, entregas y resultados en tiempo real.
+  </div>
+
+  <div className="monomo-card" style={{ borderRadius: '12px', padding: '16px', backgroundColor: '#fdfdfd' }}>
+    ⚙️ <strong>Acceder a herramientas para facilitar todo el proceso</strong><br/>
+    Desde filtros inteligentes hasta plantillas para brief, todo pensado para ti.
+  </div>
+
+  <div className="monomo-card" style={{ borderRadius: '12px', padding: '16px', backgroundColor: '#fdfdfd' }}>
+    📲 <strong>¿Hablar directo con modelos?</strong><br/>
+    (Y sí, puedes hacerlo desde la misma plataforma 😉).
+  </div>
+
+</div>
+
+
 🔍 Crear convocatorias
 
 🤙 Enviar ofertas personalizadas

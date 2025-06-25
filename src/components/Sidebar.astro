@@ -8,3 +8,51 @@ import Sidebar from '../../components/Sidebar.astro';
     <slot />
   </main>
 </div>
+
+---
+import { getCollection } from 'astro:content';
+import { Astro } from 'astro';
+
+const docs = await getCollection('docs');
+
+// Agrupar por carpeta (ej: marcas, modelos)
+const grouped = docs.reduce((acc, doc) => {
+  const [section] = doc.id.split('/');
+  acc[section] = acc[section] || [];
+  acc[section].push(doc);
+  return acc;
+}, {});
+
+// Detectar URL activa
+const currentUrl = Astro.url.pathname;
+---
+
+<aside class="w-full p-4 bg-white rounded-xl border shadow-sm">
+  <h2 class="text-lg font-bold mb-4">Centro de ayuda 🛠️</h2>
+
+  {Object.entries(grouped).map(([section, entries]) => {
+    const isActiveSection = entries.some((entry) => currentUrl.includes(entry.slug));
+
+    return (
+      <details class="mb-2" open={isActiveSection}>
+        <summary class="cursor-pointer font-semibold capitalize text-[#fe5b4c]">
+          {section}
+        </summary>
+        <ul class="pl-4 mt-2 space-y-1">
+          {entries.map((entry) => (
+            <li>
+              <a
+                href={`/docs/${entry.slug}/`}
+                class={`block hover:underline ${
+                  currentUrl.includes(entry.slug) ? 'font-bold text-[#37feb5]' : 'text-gray-700'
+                }`}
+              >
+                {entry.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    );
+  })}
+</aside>

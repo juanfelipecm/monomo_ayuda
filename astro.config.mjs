@@ -72,14 +72,6 @@ export default defineConfig({
                         label: 'Mejores prácticas',
                         autogenerate: {directory: 'marcas/mejores-practicas'},
                     },
-                    {
-                        label: 'Activaciones',
-                        autogenerate: {directory: 'marcas/activaciones'},
-                    },
-                    {
-                        label: 'Programa Viralidad',
-                        autogenerate: {directory: 'marcas/programa-viralidad'},
-                    },
                 ]
             }            
         ],

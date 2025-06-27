@@ -31,29 +31,29 @@ export default defineConfig({
                 // ],
             // },
             {
-                label: 'Modelos',
+                label: #'Modelos',
                 items: [
                     'modelos/modelos-intro',    
                     {
-                        label: 'Primeros pasos',
+                        label: ##'Primeros pasos',
                         autogenerate: {directory: 'modelos/primeros-pasos'},
                     },
                     {
-                        label: 'Tipos de proyectos',
+                        label: ##'Tipos de proyectos',
                         autogenerate: {directory: 'modelos/tipos-de-proyectos'},
                     },                                                                                                                        
                     {
-                        label: 'Contratos y Pagos',
+                        label: ##'Contratos y Pagos',
                         autogenerate: {directory: 'modelos/contratos-y-pagos'},
                     },
                     {
-                        label: 'Mejores prácticas',
+                        label: ##'Mejores prácticas',
                         autogenerate: {directory: 'modelos/mejores-practicas'},
                     },
                 ]
             },
             {
-                label: 'Marcas',
+                label: #'Marcas',
                 items: [
                     'marcas/marcas-intro',    
                     {

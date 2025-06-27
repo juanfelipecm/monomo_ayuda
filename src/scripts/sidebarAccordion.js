@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('sidebarAccordion.js cargado');
+
+document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('.sidebar-section');
 
   sections.forEach(section => {

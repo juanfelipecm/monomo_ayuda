@@ -1,15 +1,4 @@
 ---
-import Sidebar from '../../components/Sidebar.astro';
----
-
-<div class="flex flex-col md:flex-row gap-4">
-  <Sidebar />
-  <main class="flex-1">
-    <slot />
-  </main>
-</div>
-
----
 import { getCollection } from 'astro:content';
 import { Astro } from 'astro';
 
@@ -30,29 +19,44 @@ const currentUrl = Astro.url.pathname;
 <aside class="w-full p-4 bg-white rounded-xl border shadow-sm">
   <h2 class="text-lg font-bold mb-4">Centro de ayuda 🛠️</h2>
 
-  {Object.entries(grouped).map(([section, entries]) => {
-    const isActiveSection = entries.some((entry) => currentUrl.includes(entry.slug));
+  {(() => {
+    let activeSection = null;
 
-    return (
-      <details class="mb-2" open={isActiveSection}>
-        <summary class="cursor-pointer font-semibold capitalize text-[#fe5b4c]">
-          {section}
-        </summary>
-        <ul class="pl-4 mt-2 space-y-1">
-          {entries.map((entry) => (
-            <li>
-              <a
-                href={`/docs/${entry.slug}/`}
-                class={`block hover:underline ${
-                  currentUrl.includes(entry.slug) ? 'font-bold text-[#37feb5]' : 'text-gray-700'
-                }`}
-              >
-                {entry.data.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </details>
-    );
-  })}
+    // 1. Detectamos cuál sección tiene un artículo que coincide con la URL
+    for (const [section, entries] of Object.entries(grouped)) {
+      if (entries.some((entry) => currentUrl.includes(entry.slug))) {
+        activeSection = section;
+        break;
+      }
+    }
+
+    // 2. Renderizamos el sidebar
+    return Object.entries(grouped).map(([section, entries]) => {
+      const isOpen = section === activeSection;
+
+      return (
+        <details class="mb-2" open={isOpen}>
+          <summary class="cursor-pointer font-semibold capitalize text-[#fe5b4c]">
+            {section}
+          </summary>
+          <ul class="pl-4 mt-2 space-y-1">
+            {entries.map((entry) => (
+              <li>
+                <a
+                  href={`/docs/${entry.slug}/`}
+                  class={`block hover:underline ${
+                    currentUrl.includes(entry.slug)
+                      ? 'font-bold text-[#37feb5]'
+                      : 'text-gray-700'
+                  }`}
+                >
+                  {entry.data.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      );
+    });
+  })()}
 </aside>

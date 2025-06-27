@@ -9,7 +9,7 @@ export default defineConfig({
     integrations: [starlight({
         title: 'Ayuda',
         description: 'Portal de ayuda de Monomo',
-        favicon: 'src/assets/faviconV2.png',
+        favicon: '/images/logo-monomo-m.png',
         defaultLocale: 'root',
         logo: {
             src: './src/assets/Logo_Monomo_negro.png',

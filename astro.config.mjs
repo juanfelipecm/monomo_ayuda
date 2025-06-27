@@ -80,3 +80,11 @@ export default defineConfig({
             applyBaseStyles: true,
           })],
 });
+
+starlight({
+  title: 'Ayuda',
+  ...
+  collapseSidebar: 'except-current', //
+  ...
+})
+

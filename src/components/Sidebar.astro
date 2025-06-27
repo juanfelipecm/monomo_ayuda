@@ -4,7 +4,7 @@ import { Astro } from 'astro';
 
 const docs = await getCollection('docs');
 
-// Agrupar por carpeta (ej: modelos, marcas)
+// Agrupar por grupo y sección (modelos/primeros-pasos, marcas/contratos, etc.)
 const grouped = docs.reduce((acc, doc) => {
   const [group, section] = doc.id.split('/');
   acc[group] = acc[group] || {};
@@ -19,42 +19,30 @@ const currentUrl = Astro.url.pathname;
 <aside class="w-full p-4 bg-white rounded-xl border shadow-sm">
   <h2 class="text-lg font-bold mb-4">Centro de ayuda 🛠️</h2>
 
-  {(() => {
-    let activeGroup = null;
-    let activeSection = null;
+  {Object.entries(grouped).map(([group, sections]) => {
+    const isGroupActive = Object.values(sections).some(entries =>
+      entries.some(entry => currentUrl.includes(entry.slug))
+    );
 
-    // Encontrar el grupo y sección activa
-    for (const [group, sections] of Object.entries(grouped)) {
-      for (const [section, entries] of Object.entries(sections)) {
-        if (entries.some((entry) => currentUrl.includes(entry.slug))) {
-          activeGroup = group;
-          activeSection = section;
-          break;
-        }
-      }
-    }
+    return (
+      <div class="mb-4">
+        <div class="text-xl font-bold capitalize text-black mb-1">
+          {group}
+        </div>
+        <div class="ml-2">
+          {Object.entries(sections).map(([section, entries]) => {
+            const isSectionActive = entries.some(entry =>
+              currentUrl.includes(entry.slug)
+            );
 
-    return Object.entries(grouped).map(([group, sections]) => {
-      const isGroupOpen = group === activeGroup;
-
-      return (
-        <details class="mb-3" open={isGroupOpen}>
-          <summary class="cursor-pointer text-xl font-bold capitalize text-black">
-            {group}
-          </summary>
-
-          <div class="ml-4 mt-2 space-y-2">
-            {Object.entries(sections).map(([section, entries]) => {
-              const isSectionOpen = section === activeSection;
-
-              return (
-                <details class="mb-1" open={isSectionOpen}>
+            return (
+              <div class="mb-2">
+                <details open={isSectionActive}>
                   <summary class="cursor-pointer font-semibold text-[#fe5b4c] capitalize">
                     {section.replace(/-/g, ' ')}
                   </summary>
-
                   <ul class="pl-4 mt-1 space-y-1">
-                    {entries.map((entry) => (
+                    {entries.map(entry => (
                       <li>
                         <a
                           href={`/docs/${entry.slug}/`}
@@ -70,12 +58,11 @@ const currentUrl = Astro.url.pathname;
                     ))}
                   </ul>
                 </details>
-              );
-            })}
-          </div>
-        </details>
-      );
-    });
-  })()}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  })}
 </aside>
-

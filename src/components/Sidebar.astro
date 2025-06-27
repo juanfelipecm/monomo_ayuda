@@ -4,15 +4,15 @@ import { Astro } from 'astro';
 
 const docs = await getCollection('docs');
 
-// Agrupar por carpeta (ej: marcas, modelos)
+// Agrupar por carpeta (ej: modelos, marcas)
 const grouped = docs.reduce((acc, doc) => {
-  const [section] = doc.id.split('/');
-  acc[section] = acc[section] || [];
-  acc[section].push(doc);
+  const [group, section] = doc.id.split('/');
+  acc[group] = acc[group] || {};
+  acc[group][section] = acc[group][section] || [];
+  acc[group][section].push(doc);
   return acc;
 }, {});
 
-// Detectar URL activa
 const currentUrl = Astro.url.pathname;
 ---
 
@@ -20,43 +20,62 @@ const currentUrl = Astro.url.pathname;
   <h2 class="text-lg font-bold mb-4">Centro de ayuda 🛠️</h2>
 
   {(() => {
+    let activeGroup = null;
     let activeSection = null;
 
-    // 1. Detectamos cuál sección tiene un artículo que coincide con la URL
-    for (const [section, entries] of Object.entries(grouped)) {
-      if (entries.some((entry) => currentUrl.includes(entry.slug))) {
-        activeSection = section;
-        break;
+    // Encontrar el grupo y sección activa
+    for (const [group, sections] of Object.entries(grouped)) {
+      for (const [section, entries] of Object.entries(sections)) {
+        if (entries.some((entry) => currentUrl.includes(entry.slug))) {
+          activeGroup = group;
+          activeSection = section;
+          break;
+        }
       }
     }
 
-    // 2. Renderizamos el sidebar
-    return Object.entries(grouped).map(([section, entries]) => {
-      const isOpen = section === activeSection;
+    return Object.entries(grouped).map(([group, sections]) => {
+      const isGroupOpen = group === activeGroup;
 
       return (
-        <details class="mb-2" open={isOpen}>
-          <summary class="cursor-pointer font-semibold capitalize text-[#fe5b4c]">
-            {section}
+        <details class="mb-3" open={isGroupOpen}>
+          <summary class="cursor-pointer text-xl font-bold capitalize text-black">
+            {group}
           </summary>
-          <ul class="pl-4 mt-2 space-y-1">
-            {entries.map((entry) => (
-              <li>
-                <a
-                  href={`/docs/${entry.slug}/`}
-                  class={`block hover:underline ${
-                    currentUrl.includes(entry.slug)
-                      ? 'font-bold text-[#37feb5]'
-                      : 'text-gray-700'
-                  }`}
-                >
-                  {entry.data.title}
-                </a>
-              </li>
-            ))}
-          </ul>
+
+          <div class="ml-4 mt-2 space-y-2">
+            {Object.entries(sections).map(([section, entries]) => {
+              const isSectionOpen = section === activeSection;
+
+              return (
+                <details class="mb-1" open={isSectionOpen}>
+                  <summary class="cursor-pointer font-semibold text-[#fe5b4c] capitalize">
+                    {section.replace(/-/g, ' ')}
+                  </summary>
+
+                  <ul class="pl-4 mt-1 space-y-1">
+                    {entries.map((entry) => (
+                      <li>
+                        <a
+                          href={`/docs/${entry.slug}/`}
+                          class={`block px-2 py-1 rounded hover:underline ${
+                            currentUrl.includes(entry.slug)
+                              ? 'font-bold text-white bg-red-600'
+                              : 'text-gray-700'
+                          }`}
+                        >
+                          {entry.data.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              );
+            })}
+          </div>
         </details>
       );
     });
   })()}
 </aside>
+

@@ -4,7 +4,7 @@ import { Astro } from 'astro';
 
 const docs = await getCollection('docs');
 
-// Agrupar por grupo y sección (modelos/primeros-pasos, marcas/contratos, etc.)
+// Agrupar por grupo y sección
 const grouped = docs.reduce((acc, doc) => {
   const [group, section] = doc.id.split('/');
   acc[group] = acc[group] || {};
@@ -17,51 +17,44 @@ const currentUrl = Astro.url.pathname;
 ---
 
 <aside class="w-full p-4 bg-white rounded-xl border shadow-sm">
-  <h2 class="text-lg font-bold mb-4">Centro de ayuda 🛠️</h2>
+  <h2 class="text-2xl font-bold mb-4">Centro de ayuda 🛠️</h2>
 
   {Object.entries(grouped).map(([group, sections]) => {
-    const isGroupActive = Object.values(sections).some(entries =>
-      entries.some(entry => currentUrl.includes(entry.slug))
-    );
-
     return (
-      <div class="mb-4">
-        <div class="text-xl font-bold capitalize text-black mb-1">
+      <div class="mb-6">
+        {/* 🔵 Nivel 1: Modelos, Marcas */}
+        <div class="text-2xl font-extrabold text-black mb-2 capitalize">
           {group}
         </div>
-        <div class="ml-2">
-          {Object.entries(sections).map(([section, entries]) => {
-            const isSectionActive = entries.some(entry =>
-              currentUrl.includes(entry.slug)
-            );
 
-            return (
-              <div class="mb-2">
-                <details open={isSectionActive}>
-                  <summary class="cursor-pointer font-semibold text-[#fe5b4c] capitalize">
-                    {section.replace(/-/g, ' ')}
-                  </summary>
-                  <ul class="pl-4 mt-1 space-y-1">
-                    {entries.map(entry => (
-                      <li>
-                        <a
-                          href={`/docs/${entry.slug}/`}
-                          class={`block px-2 py-1 rounded hover:underline ${
-                            currentUrl.includes(entry.slug)
-                              ? 'font-bold text-white bg-red-600'
-                              : 'text-gray-700'
-                          }`}
-                        >
-                          {entry.data.title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
+        {Object.entries(sections).map(([section, entries]) => {
+          return (
+            <div class="mb-2">
+              {/* 🟠 Nivel 2: Subsecciones */}
+              <div class="text-lg font-semibold text-[#fe5b4c] capitalize mb-1">
+                {section.replace(/-/g, ' ')}
               </div>
-            );
-          })}
-        </div>
+
+              <ul class="pl-4 space-y-1">
+                {entries.map(entry => (
+                  <li>
+                    {/* 🟢 Nivel 3: Artículos */}
+                    <a
+                      href={`/docs/${entry.slug}/`}
+                      class={`block px-2 py-1 rounded hover:underline ${
+                        currentUrl.includes(entry.slug)
+                          ? 'font-bold text-white bg-red-600'
+                          : 'text-gray-700'
+                      }`}
+                    >
+                      {entry.data.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
     );
   })}

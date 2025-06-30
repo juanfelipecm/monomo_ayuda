@@ -12,7 +12,7 @@ export default defineConfig({
         favicon: '/images/prueba_ca.png',
         defaultLocale: 'root',
         logo: {
-            src: './src/assets/Logo_Monomo_negro.png',
+            src: '.public/images/logo-monomo-m.png',
             replacesTitle: true
         },
         customCss: [

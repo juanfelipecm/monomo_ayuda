@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from 'astro/config';More actions
 import starlight from '@astrojs/starlight';
 
 import tailwind from '@astrojs/tailwind';
@@ -9,10 +9,10 @@ export default defineConfig({
     integrations: [starlight({
         title: 'Ayuda',
         description: 'Portal de ayuda de Monomo',
-        favicon: '/images/prueba_ca.png',
+        favicon: '.src/assets/faviconV2.png',
         defaultLocale: 'root',
         logo: {
-            src: '.public/images/logo-monomo-m.png',
+            src: './src/assets/Logo_Monomo_negro.png',
             replacesTitle: true
         },
         customCss: [

@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';More actions
+import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 import tailwind from '@astrojs/tailwind';

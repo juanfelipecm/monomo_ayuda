@@ -8,12 +8,13 @@ export default defineConfig({
     starlight({
       title: 'Ayuda',
       description: 'Portal de ayuda de Monomo',
-      favicon: '/faviconV2.png', // 📌 Esto asume que está en /public/faviconV2.png
+      favicon: '/images/prueba_ca.png',
       defaultLocale: 'root',
       logo: {
         src: './src/assets/Logo_Monomo_negro.png',
         replacesTitle: true
       },
+      customCss: ['./src/tailwind.css'],
       social: {
         instagram: 'https://instagram.com/monomo_co'
       },
